@@ -9,6 +9,9 @@
 	    ((:file "packages")
 	     (:file "macros")
 	     (:file "get-env")
+	     (:file "sharp-at")
 	     (:file "exec-command" :depends-on ("get-env"))
-	     (:file "dbind")))))
+	     (:file "dbind"))
+	    :serial t
+	     )))
 
