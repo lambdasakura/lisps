@@ -25,5 +25,6 @@
 (in-package #:cl-user)
 (defpackage #:lambda_sakura
   (:use #:common-lisp)
+  (:nicknames :sakura)
   (:export
    #:dbind))
