@@ -1,5 +1,5 @@
-;;;
-;;; package.lisp --- Package definition for Babel
+;;
+;;; get-env.lisp --- Package definition for Babel
 ;;;
 ;;; Copyright (C) 2011, lambda_sakura  <lambda.sakura@gmail.com>
 ;;;
@@ -22,13 +22,17 @@
 ;;; WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 ;;; OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 ;;; DEALINGS IN THE SOFTWARE.
-
-(in-package #:cl-user)
-(defpackage #:lambda_sakura
-  (:use #:common-lisp)
-  (:nicknames :sakura)
-  (:export
-   #:get-env
-   #:exec-command
-   #:sharp-at
-   #:dbind))
+(in-package #:lambda_sakura)
+(defun get-env (name &optional default)
+    #+CMU
+    (let ((x (assoc name ext:*environment-list*
+                    :test #'string=)))
+      (if x (cdr x) default))
+    #-CMU
+    (or
+     #+Allegro (sys:getenv name)
+     #+CLISP (ext:getenv name)
+     #+ECL (si:getenv name)
+     #+SBCL (sb-unix::posix-getenv name)
+     #+LISPWORKS (lispworks:environment-variable name)
+     default))

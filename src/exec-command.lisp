@@ -1,5 +1,5 @@
 ;;;
-;;; package.lisp --- Package definition for Babel
+;;; exec-command.lisp
 ;;;
 ;;; Copyright (C) 2011, lambda_sakura  <lambda.sakura@gmail.com>
 ;;;
@@ -22,13 +22,18 @@
 ;;; WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 ;;; OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 ;;; DEALINGS IN THE SOFTWARE.
+(in-package #:lambda_sakura)
 
-(in-package #:cl-user)
-(defpackage #:lambda_sakura
-  (:use #:common-lisp)
-  (:nicknames :sakura)
-  (:export
-   #:get-env
-   #:exec-command
-   #:sharp-at
-   #:dbind))
+;; (defun exec-command ()
+;;   (with-output-to-string (out)
+;;     (sb-ext:run-program "/usr/bin/gcc" '("./test.c" "-o" "hoge") :output out)))
+
+(defun exec-command (command )
+  (with-output-to-string (out)
+    (sb-ext:run-program 
+     command 
+     nil
+     :search (sakura:get-env "PATH") 
+     :output out)))
+
+;;(exec-command "ls")

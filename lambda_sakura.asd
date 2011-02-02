@@ -7,5 +7,8 @@
   ((:module src
 	    :components
 	    ((:file "packages")
+	     (:file "macros")
+	     (:file "get-env")
+	     (:file "exec-command" :depends-on ("get-env"))
 	     (:file "dbind")))))
 
