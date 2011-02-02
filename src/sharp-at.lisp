@@ -22,6 +22,7 @@
 ;;; WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 ;;; OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 ;;; DEALINGS IN THE SOFTWARE.
+
 (in-package #:lambda_sakura)
 (defun |#>-reader| (stream sub-char numarg)
   (declare (ignore sub-car numarg))
