@@ -11,6 +11,20 @@
 	      `(add-animation ,name x))
 	  animation)
        (change-animation  ,name "Stand"))))
+;;
+;; もとのコード
+;;
+(defclass fairy (flying-enemy
+		 enemy
+		 collidable)
+  ())
+(defmethod initialize-instance :after ((fairy-ins fairy) &rest arg)
+  "fairyのコンストラクタ
+fairyのアニメの初期化はここで実施する。"
+  (declare (ignore arg))
+  (add-animation fairy-ins "Stand" "Resource/picture/Character/Fairy/Stand/")
+  (add-animation fairy-ins "Walk" "Resource/picture/Character/Fairy/Walk/")
+  (change-animation  fairy-ins "Stand"))
 
 ;;
 ;; DSLのテストコード
